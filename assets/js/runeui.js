@@ -492,6 +492,8 @@ function renderLibraryHome() {
     content += divOpen + '<div id="home-albums" class="home-block' + toggleMPD + '" data-path="Albums" data-browsemode="album"><i class="fa fa-dot-circle-o"></i><h3>Albums</h3>browse MPD database by album</div>' + divClose;
     // Artist list (static)
     content += divOpen + '<div id="home-artists" class="home-block' + toggleMPD + '" data-path="Artists" data-browsemode="artist"><i class="fa fa-users"></i><h3>Artists</h3>browse MPD database by artist</div>' + divClose;
+	// Album Artist list (static)
+    content += divOpen + '<div id="home-album-artists" class="home-block' + toggleMPD + '" data-path="Album Artists" data-browsemode="album-artist"><i class="fa fa-users"></i><h3>Album Artists</h3>browse MPD database by album artist</div>' + divClose;
     // Genre list (static)
     content += divOpen + '<div id="home-genre" class="home-block' + toggleMPD + '" data-path="Genres" data-browsemode="genre"><i class="fa fa-tags"></i><h3>Genres</h3>browse MPD database by genre</div>' + divClose;
     content += '</div>';

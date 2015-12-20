@@ -599,6 +599,13 @@ function browseDB($sock,$browsemode,$query) {
                 sendMpdCommand($sock,'list "artist"');
 			}
             break;
+		case 'album-artist':
+            if (isset($query) && !empty($query)){
+                sendMpdCommand($sock,'list "AlbumArtist" "'.html_entity_decode($query).'"');
+            } else {
+                sendMpdCommand($sock,'list "AlbumArtist"');
+			}
+            break;
 		case 'genre':
             if (isset($query) && !empty($query)){
                 sendMpdCommand($sock,'list "artist" "genre" "'.html_entity_decode($query).'"');
