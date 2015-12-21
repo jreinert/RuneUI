@@ -2202,6 +2202,13 @@ if ($('#section-index').length) {
                         } else {
                             GUI.browsemode = 'genre';
                         }
+                    } else if (GUI.browsemode === 'album-artist') {
+                        path = GUI.currentDBpath[GUI.currentDBpos[10] - 1];
+                        if (path === '') {
+                            path = 'Album Artists';
+                        } else {
+                            GUI.browsemode = 'genre';
+                        }
                     } else if (GUI.browsemode === 'genre') {
                         path = 'Genres';
                     } else if (GUI.browsemode === 'albumfilter') {
