@@ -578,52 +578,52 @@ function deleteBookmark($redis, $id)
 
 function browseDB($sock,$browsemode,$query) {
     switch ($browsemode) {
-        case 'file':
-            if (isset($query) && !empty($query)){
-                sendMpdCommand($sock,'lsinfo "'.html_entity_decode($query).'"');
-            } else {
-                sendMpdCommand($sock,'lsinfo');
-			}
-            break;
-		case 'album':
-            if (isset($query) && !empty($query)){
-                sendMpdCommand($sock,'find "album" "'.html_entity_decode($query).'"');
-            } else {
-                sendMpdCommand($sock,'list "album"');
-			}
-            break;
-		case 'artist':
-            if (isset($query) && !empty($query)){
-                sendMpdCommand($sock,'list "album" "'.html_entity_decode($query).'"');
-            } else {
-                sendMpdCommand($sock,'list "artist"');
-			}
-            break;
-		case 'album-artist':
-            if (isset($query) && !empty($query)){
-                sendMpdCommand($sock,'list "AlbumArtist" "'.html_entity_decode($query).'"');
-            } else {
-                sendMpdCommand($sock,'list "AlbumArtist"');
-			}
-            break;
-		case 'genre':
-            if (isset($query) && !empty($query)){
-                sendMpdCommand($sock,'list "artist" "genre" "'.html_entity_decode($query).'"');
-            } else {
-                sendMpdCommand($sock,'list "genre"');
-			}
-            break;
-        case 'albumfilter':
-            if (isset($query) && !empty($query)){
-                sendMpdCommand($sock,'find "albumartist" "'.html_entity_decode($query).'" "album" ""');
-            }
-            break;
-		case 'globalrandom':
-            sendMpdCommand($sock,'listall');
-            break;
-	}
-	$response = readMpdResponse($sock);
-	return _parseFileListResponse($response);
+    case 'file':
+        if (isset($query) && !empty($query)){
+            sendMpdCommand($sock,'lsinfo "'.html_entity_decode($query).'"');
+        } else {
+            sendMpdCommand($sock,'lsinfo');
+        }
+        break;
+    case 'album':
+        if (isset($query) && !empty($query)){
+            sendMpdCommand($sock,'find "album" "'.html_entity_decode($query).'"');
+        } else {
+            sendMpdCommand($sock,'list "album"');
+        }
+        break;
+    case 'artist':
+        if (isset($query) && !empty($query)){
+            sendMpdCommand($sock,'list "album" "'.html_entity_decode($query).'"');
+        } else {
+            sendMpdCommand($sock,'list "artist"');
+        }
+        break;
+    case 'album-artist':
+        if (isset($query) && !empty($query)){
+            sendMpdCommand($sock,'list "AlbumArtist" "'.html_entity_decode($query).'"');
+        } else {
+            sendMpdCommand($sock,'list "AlbumArtist"');
+        }
+        break;
+    case 'genre':
+        if (isset($query) && !empty($query)){
+            sendMpdCommand($sock,'list "artist" "genre" "'.html_entity_decode($query).'"');
+        } else {
+            sendMpdCommand($sock,'list "genre"');
+        }
+        break;
+    case 'albumfilter':
+        if (isset($query) && !empty($query)){
+            sendMpdCommand($sock,'find "albumartist" "'.html_entity_decode($query).'" "album" ""');
+        }
+        break;
+    case 'globalrandom':
+        sendMpdCommand($sock,'listall');
+        break;
+    }
+    $response = readMpdResponse($sock);
+    return _parseFileListResponse($response);
 }
 
 function searchDB($sock,$querytype,$query) {
