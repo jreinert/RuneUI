@@ -601,9 +601,9 @@ function browseDB($sock,$browsemode,$query) {
         break;
     case 'album-artist':
         if (isset($query) && !empty($query)){
-            sendMpdCommand($sock,'list "AlbumArtist" "'.html_entity_decode($query).'"');
+            sendMpdCommand($sock,'list "album" "'.html_entity_decode($query).'"');
         } else {
-            sendMpdCommand($sock,'list "AlbumArtist"');
+            sendMpdCommand($sock,'list "albumartist"');
         }
         break;
     case 'genre':
@@ -796,6 +796,9 @@ function _parseFileListResponse($resp)
                     $plCounter++;
                     $plistArray[$plCounter]['album'] = $value;
                 } elseif ( $element === 'Artist' ) {
+                    $plCounter++;
+                    $plistArray[$plCounter]['artist'] = $value;
+                } elseif ( $element === 'AlbumArtist' ) {
                     $plCounter++;
                     $plistArray[$plCounter]['artist'] = $value;
                 } elseif ( $element === 'Genre' ) {
