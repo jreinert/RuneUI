@@ -921,7 +921,7 @@ function parseResponse(options) {
                     content += inputArr.album;
                     content += '</span></li>';
                 }
-            } else if (GUI.browsemode === 'artist' || GUI.browsemode === 'album-artist') {
+            } else if (GUI.browsemode === 'artist') {
             // browse by artist
                 if (inputArr.album !== undefined) {
                     content = '<li id="db-' + (i + 1) + '" class="db-folder db-album" data-path="';
@@ -931,6 +931,21 @@ function parseResponse(options) {
                     content += '</span></li>';
                 } else if (inputArr.artist !== '') {
                     content = '<li id="db-' + (i + 1) + '" class="db-folder db-artist" data-path="';
+                    content += inputArr.artist;
+                    content += '"><i class="fa fa-bars db-action" title="Actions" data-toggle="context" data-target="#context-menu"></i><span><i class="fa fa-user"></i>';
+                    content += inputArr.artist;
+                    content += '</span></li>';
+                }
+            } else if (GUI.browsemode === 'album-artist') {
+            // browse by album artist
+                if (inputArr.album !== undefined) {
+                    content = '<li id="db-' + (i + 1) + '" class="db-folder db-album" data-path="';
+                    content += inputArr.album;
+                    content += '"><i class="fa fa-bars db-action" title="Actions" data-toggle="context" data-target="#context-menu-album"></i><span><i class="fa fa-dot-circle-o"></i>';
+                    content += (inputArr.album !== '') ? inputArr.album : 'Unknown album';
+                    content += '</span></li>';
+                } else if (inputArr.artist !== '') {
+                    content = '<li id="db-' + (i + 1) + '" class="db-folder db-album-artist" data-path="';
                     content += inputArr.artist;
                     content += '"><i class="fa fa-bars db-action" title="Actions" data-toggle="context" data-target="#context-menu"></i><span><i class="fa fa-user"></i>';
                     content += inputArr.artist;
@@ -2067,6 +2082,13 @@ if ($('#section-index').length) {
                             path: path,
                             uplevel: 0,
                             browsemode: 'artist'
+                        });
+                    } else if (el.hasClass('db-album-artist')) {
+                    // browse by album artist
+                        getDB({
+                            path: path,
+                            uplevel: 0,
+                            browsemode: 'album-artist'
                         });
                     } else if (el.hasClass('db-genre')) {
                     // browse by genre
