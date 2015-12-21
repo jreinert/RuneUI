@@ -921,7 +921,7 @@ function parseResponse(options) {
                     content += inputArr.album;
                     content += '</span></li>';
                 }
-            } else if (GUI.browsemode === 'artist') {
+            } else if (GUI.browsemode === 'artist' || GUI.browsemode === 'album-artist') {
             // browse by artist
                 if (inputArr.album !== undefined) {
                     content = '<li id="db-' + (i + 1) + '" class="db-folder db-album" data-path="';
@@ -1183,6 +1183,12 @@ function populateDB(options){
             breadcrumb.html(path);
         } else {
             breadcrumb.html('Genres/' + path);
+        }
+    } else if (GUI.browsemode === 'album-artist') {
+        if (path === 'Album Artists') {
+            breadcrumb.html(path);
+        } else {
+            breadcrumb.html('Album Artists/' + path);
         }
     } else {
         breadcrumb.html(path);
