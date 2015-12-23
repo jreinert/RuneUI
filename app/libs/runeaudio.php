@@ -589,7 +589,22 @@ function browseDB($sock,$browsemode,$query) {
         if (isset($query) && !empty($query)){
             sendMpdCommand($sock,'find "album" "'.html_entity_decode($query).'"');
         } else {
-            sendMpdCommand($sock,'list "album"');
+            sendMpdCommand($sock,'list "albumartist"');
+            $response = readMpdResponse($sock);
+            $albums = array();
+            $artists = _parseFileListResponse($response);
+            foreach ($artists as $artist) {
+                $artistName = $artist['artist'];
+                sendMpdCommand($sock,'list "album" "albumartist" "'.$artistName.'"');
+                $response = readMpdResponse($sock);
+                $artistsAlbums = _parseFileListResponse($response);
+                foreach ($artistsAlbums as $album) {
+                    $album['artist'] = $artistName;
+                    array_push($albums, $album);
+                }
+            }
+
+            return $albums;
         }
         break;
     case 'artist':

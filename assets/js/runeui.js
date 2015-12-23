@@ -918,6 +918,8 @@ function parseResponse(options) {
                     content = '<li id="db-' + (i + 1) + '" class="db-folder db-album" data-path="';
                     content += inputArr.album.replace(/\"/g,'&quot;');
                     content += '"><i class="fa fa-bars db-action" title="Actions" data-toggle="context" data-target="#context-menu-album"></i><span><i class="fa fa-dot-circle-o"></i>';
+                    content += inputArr.artist;
+                    content += ' - ';
                     content += inputArr.album;
                     content += '</span></li>';
                 }
